@@ -31,6 +31,9 @@
         <table class="table mt-3">
             <thead>
                 <tr>
+                    <th width="50">
+                        #
+                    </th>
                     <th width="120">
                         Sort
                     </th>
@@ -50,7 +53,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in products" :key="item.id">
+                <tr v-for="(item, index) in products" :key="item.id">
+                    <td>{{ index + 1 }}</td>
                     <td>{{ item.category }}</td>
                     <td>{{ item.title }}</td>
                     <td class="text-right">
@@ -60,8 +64,12 @@
                         {{ item.price }}
                     </td>
                     <td>
-                        <span class="text-success" v-if="item.is_enabled">Active</span>
-                        <span v-else>Disable</span>
+                        <!-- <span class="text-success" v-if="item.is_enabled">Active</span>
+                        <span v-else>Disable</span> -->
+                        <input type="checkbox" :id="`switch-${index}`" class="switch" v-model="item.is_enabled" />
+                        <label class="slider" :for="`switch-${index}`">
+
+                        </label>
                     </td>
                     <td>
                         <div class="btn-group">
@@ -146,9 +154,9 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check">
-                                        <input id="is_enabled" class="form-check-input" v-model="tempProduct.is_enabled"
-                                            type="checkbox">
-                                        <label class="form-check-label" for="is_enabled">Enabled</label>
+                                        <input class="styled-checkbox" id="is_enabled" type="checkbox"
+                                            v-model="tempProduct.is_enabled">
+                                        <label class="styledLabel" for="is_enabled">Enabled</label>
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +164,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-outline-secondary"
-                                @click="updateProduct">ULoad</button>
+                                @click="updateProduct">UpLoad</button>
                         </div>
                     </div>
                 </div>
@@ -177,8 +185,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        If delete 
-                        <strong class="text-danger">{{ tempProduct.title }}</strong>, it can't recovery. 
+                        If delete
+                        <strong class="text-danger">{{ tempProduct.title }}</strong>, it can't recovery.
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
