@@ -1,0 +1,11 @@
+body {
+    background-color: rgba(0, 0, 0, 0.03) !important;
+}
+#header .navbar__border {
+    border-bottom: 1px solid black;
+}
+#header .navbar__border div {
+    font-size: 1.25rem;
+    padding: 5px 0;
+    margin: 0 auto;
+}
